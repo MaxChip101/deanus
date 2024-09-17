@@ -1,220 +1,85 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <cstring>
+#include <vector>
+#include <unistd.h>
+
+#include "syntax.h"
 
 using namespace std;
 
-unordered_map<char, string> key_tokens {
-    {'!', "=[EXCLAMATION]="},
-    {'@', "=[AT]="},
-    {'#', "=[HASHTAG]="},
-    {'$', "=[DOLLAR]="},
-    {'%', "=[PERCENT]="},
-    {'^', "=[CARAT]="},
-    {'&', "=[AMPERSAND]="},
-    {'*', "=[MULTIPLY]="},
-    {'(', "=[LEFT_PARENTHESIS]="},
-    {')', "=[RIGHT_PARENTHESIS]="},
-    {'-', "=[MINUS]="},
-    {'+', "=[PLUS]="},
-    {'=', "=[EQUAL]="},
-    {'{', "=[LEFT_BRACE]="},
-    {'}', "=[RIGHT_BRACE]="},
-    {'[', "=[LEFT_BRACKET]="},
-    {']', "=[RIGHT_BRACKET]="},
-    {'\\', "=[BACKSLASH]="},
-    {':', "=[COLON]="},
-    {';', "=[SEMI]="},
-    {'\"', "=[QUOTE]="},
-    {'\'', "=[APOSTROPHE]="},
-    {'<', "=[LESS_THAN]="},
-    {',', "=[COMMA]="},
-    {'>', "=[GREATER_THAN]="},
-    {'.', "=[PERIOD]="},
-    {'?', "=[QUESTION]="},
-    {'/', "=[SLASH]="},
-    {' ', "=[SPACE]="},
-};
 
-unordered_map<string, char> get_key_tokens {
-    {"=[EXCLAMATION]=", '!'},
-    {"=[AT]=", '@'},
-    {"=[HASHTAG]=", '#'},
-    {"=[DOLLAR]=", '$'},
-    {"=[PERCENT]=", '%'},
-    {"=[CARAT]=", '^'},
-    {"=[AMPERSAND]=", '&'},
-    {"=[MULTIPLY]=", '*'},
-    {"=[LEFT_PARENTHESIS]=", '('},
-    {"=[RIGHT_PARENTHESIS]=", ')'},
-    {"=[MINUS]=", '-'},
-    {"=[PLUS]=", '+'},
-    {"=[EQUAL]", '='},
-    {"=[LEFT_BRACE]=", '{'},
-    {"=[RIGHT_BRACE]=", '}'},
-    {"=[LEFT_BRACKET]=", '['},
-    {"=[RIGHT_BRACKET]=", ']'},
-    {"=[BACKSLASH]=", '\\'},
-    {"=[COLON]=", ':'},
-    {"=[SEMI]=", ';'},
-    {"=[QUOTE]=", '\"'},
-    {"=[APOSTROPHE]=", '\''},
-    {"=[LESS_THAN]=", '<'},
-    {"=[COMMA]=", ','},
-    {"=[GREATER_THAN]=", '>'},
-    {"=[PERIOD]=", '.'},
-    {"=[QUESTION]=", '?'},
-    {"=[SLASH]=", '/'},
-    {"=[SPACE]=", ' '},
-};
 
-string tokenize(string code) {
+
+string lexer(vector<string> tokens) {
+    cout << "lexing";
+}
+
+// TODO: make a function that takes in the tokens and makes it have logic to do other stuff
+
+vector<string> split(string str, char separator) {
+    vector<string> v;
+    string temp = "";
+    for (int i = 0; i <= str.length(); i++) {
+        if(str[i] == separator && temp != "" || i == str.length()) {
+            v.push_back(temp);
+            temp = "";
+        } else if (str[i] != separator) {
+            temp += str[i];
+        }
+    }
+    return v;
+}
+
+vector<string> tokenize(string code) {
 
     string tokened = "";
 
-    bool key = 0;
-
     for (int i = 0; i < code.length(); i++) {
         
-        switch (code[i]) {
-            case '.':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case ' ':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case ';':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case ',':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case ':':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '+':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '-':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '*':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '/':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '(':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case ')':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;                
-            case '[':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case ']':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '{':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '}':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '&':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '^':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '%':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '\"':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '\'':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '=':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '$':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '#':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '@':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '!':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '<':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '>':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '?':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-            case '\\':
-                tokened += key_tokens[code[i]];
-                key = 1;
-                break;
-        }
-
-        if (!key) {
+        if(charInSyntax(code[i])) {
+            tokened += getToken(code[i]);
+        } else {
             tokened += code[i];
         }
-
-        key = 0;  
     }
 
-    return tokened;
+    return split(tokened, '=');
 }
 
 
+int main(int argc, char **argv) {
 
+    cout << "test \n";
 
-int main(int argc, char *argv[]) {
+    //string cwd = argv[0];
+    /*
+    char cwd[1024];
+    string tempcwd = getcwd(cwd, sizeof(cwd));
+    string full_cwd = tempcwd + "/" + argv[1];
 
-    cout << tokenize("i'm a. skibidi (sigma)") << "\n";
+*/
+    vector<string> tokens = tokenize("skibidi, sigma; sigma no cap # real");
+
+    
+
+    for(int i = 0; i < tokens.size(); i++) {
+        cout << tokens.at(i) << " ";
+    }
+
+    /*
+    lexer(tokenize("i'm a. skibidi (sigma)"));
+
+    cout << tokenize("i'm a. skibidi (sigma)").at(0) << "\n";
+
+    */
 
     for (int arg = 0; arg <= argc; arg++) {
-
+        cout << argv[arg] << ", ";
     }
-    std::cout << "Hello, World!" << "\n";
+
+    cin.get();
+
     return 0;
 }
