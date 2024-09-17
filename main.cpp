@@ -51,8 +51,6 @@ vector<string> tokenize(string code) {
 
 int main(int argc, char **argv) {
 
-    cout << "test \n";
-
     //string cwd = argv[0];
     /*
     char cwd[1024];
@@ -60,26 +58,14 @@ int main(int argc, char **argv) {
     string full_cwd = tempcwd + "/" + argv[1];
 
 */
-    vector<string> tokens = tokenize("skibidi, sigma; sigma no cap # real");
-
-    
+    vector<string> tokens = tokenize("test, testing. this is a real test isn't it?");
 
     for(int i = 0; i < tokens.size(); i++) {
         cout << tokens.at(i) << " ";
     }
 
-    /*
-    lexer(tokenize("i'm a. skibidi (sigma)"));
-
-    cout << tokenize("i'm a. skibidi (sigma)").at(0) << "\n";
-
-    */
-
     for (int arg = 0; arg <= argc; arg++) {
         cout << argv[arg] << ", ";
     }
-
-    cin.get();
-
     return 0;
 }
