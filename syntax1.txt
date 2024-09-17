@@ -1,0 +1,10 @@
+import "console" as console;
+
+const ui8 REAL = 8;
+
+ui8 test = 8i + 6ui
+
+fn main(string[] args) -> int {
+  console.println("Hello, World!");
+  return 0;
+}
