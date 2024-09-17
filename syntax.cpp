@@ -11,10 +11,10 @@ const char key_characters[] = {
 };
 
 const string key_tokens[] = {
-    "=[EXCLAMATION]=", "=[AT]=", "=[HASHTAG]=", "=[DOLLAR]=", "=[PERCENT]=", "=[CARAT]=", "=[AMPERSAND]=", "=[MULTIPLY]=", 
-    "=[LEFT_PARENTHESIS]=", "=[RIGHT_PARENTHESIS]=", "=[MINUS]=", "=[PLUS]=", "=[EQUAL]=", "=[LEFT_BRACE]=", "=[RIGHT_BRACE]=",
-    "=[LEFT_BRACKET]=", "=[RIGHT_BRACKET]=", "=[BACKSLASH]=", "=[COLON]=", "=[SEMI]=", "=[QUOTE]=", "=[APOSTROPHE]=", "=[LESS_THAN]=",
-    "=[COMMA]=", "=[GREATER_THAN]=", "=[PERIOD]=", "=[QUESTION]=", "=[SLASH]=", "=[SPACE]=", "=[NEW_LINE]="
+    "[EXCLAMATION]", "[AT]", "[HASHTAG]", "[DOLLAR]", "[PERCENT]", "[CARAT]", "[AMPERSAND]", "[MULTIPLY]", 
+    "[LEFT_PARENTHESIS]", "[RIGHT_PARENTHESIS]", "[MINUS]", "[PLUS]", "[EQUAL]", "[LEFT_BRACE]", "[RIGHT_BRACE]",
+    "[LEFT_BRACKET]", "[RIGHT_BRACKET]", "[BACKSLASH]", "[COLON]", "[SEMI]", "[QUOTE]", "[APOSTROPHE]", "[LESS_THAN]",
+    "[COMMA]", "[GREATER_THAN]", "[PERIOD]", "[QUESTION]", "[SLASH]", "[SPACE]", "[NEW_LINE]"
 };
 
 string getToken(const char character) {
