@@ -39,7 +39,7 @@ vector<string> tokenize(string code) {
     for (int i = 0; i < code.length(); i++) {
         
         if(charInSyntax(code[i])) {
-            tokened += getToken(code[i]);
+            tokened += "=" + getToken(code[i]) + "=" ;
         } else {
             tokened += code[i];
         }
