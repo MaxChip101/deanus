@@ -38,19 +38,19 @@ char getChar(const string token) {
 bool charInSyntax(const char character) {
     for (int i = 0; i < sizeof(key_characters) / sizeof(key_characters[0]); i++) {
         if (key_characters[i] == character) {
-            return 1;
+            return true;
         }
         
     }
-    return 0;
+    return false;
 }
 
 bool tokenInSyntax(string token) {
     for (int i = 0; i < sizeof(key_tokens) / sizeof(key_tokens[0]); i++) {
         if (key_tokens[i] == token) {
-            return 1;
+            return true;
         }
         
     }
-    return 0;
+    return false;
 }
