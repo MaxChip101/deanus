@@ -1,5 +1,5 @@
-#ifndef SYNTAX_H
-#define SYNTAX_H
+#ifndef KEYWORDS_H
+#define KEYWORDS_H
 
 #include <string>
 
