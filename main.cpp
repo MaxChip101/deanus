@@ -6,6 +6,7 @@
 #include <unistd.h>
 
 #include "key_words.h"
+#include "syntax.h"
 
 using namespace std;
 
