@@ -5,12 +5,9 @@
 #include <vector>
 #include <unistd.h>
 
-#include "syntax.h"
+#include "key_words.h"
 
 using namespace std;
-
-
-
 
 string lexer(vector<string> tokens) {
     cout << "lexing";
