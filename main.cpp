@@ -4,6 +4,7 @@
 #include <cstring>
 #include <vector>
 #include <unistd.h>
+#include <fstream>
 
 #include "key_words.h"
 #include "syntax.h"
@@ -48,15 +49,33 @@ vector<string> tokenize(string code) {
 
 
 int main(int argc, char **argv) {
+    
+    if(argc == 1) {
+        cerr << "File Error, no input file";
+        return 1;
+    }
 
-    //string cwd = argv[0];
-    /*
     char cwd[1024];
     string tempcwd = getcwd(cwd, sizeof(cwd));
+    
     string full_cwd = tempcwd + "/" + argv[1];
 
-*/
-    vector<string> tokens = tokenize("test, testing. this is a real test isn't it?");
+    ifstream deanFile(full_cwd.c_str());
+    if(!deanFile.is_open()) {
+        cerr << "File Error, file does not exist: \'" << full_cwd << "\'\n";
+        return 1;
+    }
+
+    string ln;
+    string content;
+
+    while(getline(deanFile, ln)) {
+        content += ln;
+        content.push_back('\n');
+    }
+
+    vector<string> tokens = tokenize(content);
+
 
     for(int i = 0; i < tokens.size(); i++) {
         cout << tokens.at(i) << " ";
@@ -65,5 +84,6 @@ int main(int argc, char **argv) {
     for (int arg = 0; arg <= argc; arg++) {
         cout << argv[arg] << ", ";
     }
+    
     return 0;
 }
