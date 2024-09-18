@@ -1,0 +1,1 @@
+g++ ./src/main.cpp ./src/syntax.cpp ./src/key_words.cpp -o ./build/deanus -O2

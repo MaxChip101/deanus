@@ -13,6 +13,7 @@ using namespace std;
 
 string lexer(vector<string> tokens) {
     cout << "lexing";
+    return "null";
 }
 
 // TODO: make a function that takes in the tokens and makes it have logic to do other stuff
