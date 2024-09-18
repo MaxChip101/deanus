@@ -8,15 +8,37 @@
 
 #include "key_words.h"
 #include "syntax.h"
+#include "compiler.h"
 
 using namespace std;
 
-string lexer(vector<string> tokens) {
-    cout << "lexing";
+string parser(vector<string> tokens) {
+
+
+    bool blockcomment = false;
+    bool linecomment = false;
+
+    for(int i = 0; i < tokens.size(); i++) {
+        if(tokens.at(i) == getToken('/') && tokens.at(i+1) == getToken('/') && !linecomment && !blockcomment) {
+            linecomment = true;
+            i+=1;
+        } else if (tokens.at(i) == getToken('/') && tokens.at(i+1) == getToken('*') && !blockcomment && !linecomment) {
+            blockcomment = true;
+            i+=1;
+        } else if (tokens.at(i) == getToken('*') && tokens.at(i+1) == getToken('/') && blockcomment) {
+            blockcomment = false;
+            i+=1;
+        } else if(tokens.at(i) == getToken('\n') && linecomment) {
+            linecomment = false;
+        } else {
+            if(!linecomment && ! blockcomment) {
+                cout << tokens.at(i) << endl;
+            }
+        }
+    }
+
     return "null";
 }
-
-// TODO: make a function that takes in the tokens and makes it have logic to do other stuff
 
 vector<string> split(string str, char separator) {
     vector<string> v;
@@ -76,7 +98,8 @@ int main(int argc, char **argv) {
     }
 
     vector<string> tokens = tokenize(content);
-
+    parser(tokens);
+/*
 
     for(int i = 0; i < tokens.size(); i++) {
         cout << tokens.at(i) << " ";
@@ -85,6 +108,6 @@ int main(int argc, char **argv) {
     for (int arg = 0; arg <= argc; arg++) {
         cout << argv[arg] << ", ";
     }
-    
+  */  
     return 0;
 }
