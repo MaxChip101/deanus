@@ -9,34 +9,31 @@
 
 using namespace std;
 
-vector<string> split(string str, char separator) {
-    vector<string> v;
-    string temp = "";
-    for (int i = 0; i <= str.length(); i++) {
-        if(str[i] == separator && temp != "" || i == str.length()) {
-            v.push_back(temp);
-            temp = "";
-        } else if (str[i] != separator) {
-            temp += str[i];
-        }
-    }
-    return v;
-}
-
 vector<string> tokenize(string code) {
 
-    string tokened = "";
+    string tokened_string = "";
+    vector<string> tokens;
+    string temp = "";
 
     for (int i = 0; i < code.length(); i++) {
         
         if(charInSyntax(code[i])) {
-            tokened += "=" + getToken(code[i]) + "=" ;
+            tokened_string += "=" + getToken(code[i]) + "=" ;
         } else {
-            tokened += code[i];
+            tokened_string += code[i];
         }
     }
 
-    return split(tokened, '=');
+    for (int i = 0; i <= tokened_string.length(); i++) {
+        if(tokened_string[i] == '=' && temp != "" || i == tokened_string.length()) {
+            tokens.push_back(temp);
+            temp = "";
+        } else if (tokened_string[i] != '=') {
+            temp += tokened_string[i];
+        }
+    }
+
+    return tokens;
 }
 
 
