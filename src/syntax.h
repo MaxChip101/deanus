@@ -3,4 +3,6 @@
 
 #include <string>
 
+std::string parser(std::vector<std::string> tokens);
+
 #endif

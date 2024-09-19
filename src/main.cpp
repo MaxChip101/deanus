@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-#include <unordered_map>
-#include <cstring>
 #include <vector>
 #include <unistd.h>
 #include <fstream>
@@ -11,34 +9,6 @@
 #include "compiler.h"
 
 using namespace std;
-
-string parser(vector<string> tokens) {
-
-
-    bool blockcomment = false;
-    bool linecomment = false;
-
-    for(int i = 0; i < tokens.size(); i++) {
-        if(tokens.at(i) == getToken('/') && tokens.at(i+1) == getToken('/') && !linecomment && !blockcomment) {
-            linecomment = true;
-            i+=1;
-        } else if (tokens.at(i) == getToken('/') && tokens.at(i+1) == getToken('*') && !blockcomment && !linecomment) {
-            blockcomment = true;
-            i+=1;
-        } else if (tokens.at(i) == getToken('*') && tokens.at(i+1) == getToken('/') && blockcomment) {
-            blockcomment = false;
-            i+=1;
-        } else if(tokens.at(i) == getToken('\n') && linecomment) {
-            linecomment = false;
-        } else {
-            if(!linecomment && ! blockcomment) {
-                cout << tokens.at(i) << endl;
-            }
-        }
-    }
-
-    return "null";
-}
 
 vector<string> split(string str, char separator) {
     vector<string> v;
@@ -73,6 +43,7 @@ vector<string> tokenize(string code) {
 
 int main(int argc, char **argv) {
     
+    
     if(argc == 1) {
         cerr << "File Error, no input file";
         return 1;
@@ -96,10 +67,11 @@ int main(int argc, char **argv) {
         content += ln;
         content.push_back('\n');
     }
+    
+   string content = "josh's private server, pretty skibidi ngl.";
 
     vector<string> tokens = tokenize(content);
     parser(tokens);
-/*
 
     for(int i = 0; i < tokens.size(); i++) {
         cout << tokens.at(i) << " ";
@@ -108,6 +80,6 @@ int main(int argc, char **argv) {
     for (int arg = 0; arg <= argc; arg++) {
         cout << argv[arg] << ", ";
     }
-  */  
+    
     return 0;
 }
