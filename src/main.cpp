@@ -67,8 +67,6 @@ int main(int argc, char **argv) {
         content += ln;
         content.push_back('\n');
     }
-    
-   string content = "josh's private server, pretty skibidi ngl.";
 
     vector<string> tokens = tokenize(content);
     parser(tokens);
