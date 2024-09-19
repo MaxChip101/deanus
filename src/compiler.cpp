@@ -31,6 +31,7 @@ string parser(const vector<string> tokens) {
         } else if(tokens.at(i) == "\n" && linecomment) {
             linecomment = false;
         } else {
+            // TODO: if it is a space then it will be deleted
             if(!linecomment && ! blockcomment) {
                 /*
                 switch (tokens.at(i)) {
