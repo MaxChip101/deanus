@@ -10,44 +10,9 @@ const char key_characters[] = {
     '>', '.', '?', '/', ' ', '\n'
 };
 
-const string key_tokens[] = {
-    "[EXCLAMATION]", "[AT]", "[HASHTAG]", "[DOLLAR]", "[PERCENT]", "[CARAT]", "[AMPERSAND]", "[MULTIPLY]", 
-    "[LEFT_PARENTHESIS]", "[RIGHT_PARENTHESIS]", "[MINUS]", "[PLUS]", "[EQUAL]", "[LEFT_BRACE]", "[RIGHT_BRACE]",
-    "[LEFT_BRACKET]", "[RIGHT_BRACKET]", "[BACKSLASH]", "[COLON]", "[SEMI]", "[QUOTE]", "[APOSTROPHE]", "[LESS_THAN]",
-    "[COMMA]", "[GREATER_THAN]", "[PERIOD]", "[QUESTION]", "[SLASH]", "[SPACE]", "[NEW_LINE]"
-};
-
-string getToken(const char character) {
-    for (int i = 0; i < sizeof(key_characters) / sizeof(key_characters[0]); i++) {
-        if (key_characters[i] == character) {
-            return key_tokens[i];
-        }
-    }
-    return "`";
-}
-
-char getChar(const string token) {
-    for (int i = 0; i < sizeof(key_tokens) / sizeof(key_tokens[0]); i++) {
-        if (key_tokens[i] == token) {
-            return key_characters[i];
-        }
-    }
-    return '`';
-}
-
 bool charInSyntax(const char character) {
-    for (int i = 0; i < sizeof(key_characters) / sizeof(key_characters[0]); i++) {
+    for (size_t i = 0; i < sizeof(key_characters) / sizeof(key_characters[0]); i++) {
         if (key_characters[i] == character) {
-            return true;
-        }
-        
-    }
-    return false;
-}
-
-bool tokenInSyntax(string token) {
-    for (int i = 0; i < sizeof(key_tokens) / sizeof(key_tokens[0]); i++) {
-        if (key_tokens[i] == token) {
             return true;
         }
         
@@ -57,25 +22,19 @@ bool tokenInSyntax(string token) {
 
 vector<string> tokenize(const string code) {
 
-    string tokened_string = "";
-    vector<string> tokens;
     string temp = "";
+    vector<string> tokens;
 
-    for (int i = 0; i < code.length(); i++) {
+    for (string::size_type i = 0; i < code.length(); i++) {
         
         if(charInSyntax(code[i])) {
-            tokened_string += "=" + getToken(code[i]) + "=" ;
+            if((temp != "") || (i == code.length() - 1)) {
+                tokens.push_back(temp);
+                temp = "";
+            }
+            tokens.push_back(string(1, code[i]));
         } else {
-            tokened_string += code[i];
-        }
-    }
-
-    for (int i = 0; i <= tokened_string.length(); i++) {
-        if(tokened_string[i] == '=' && temp != "" || i == tokened_string.length()) {
-            tokens.push_back(temp);
-            temp = "";
-        } else if (tokened_string[i] != '=') {
-            temp += tokened_string[i];
+            temp += code[i];
         }
     }
 

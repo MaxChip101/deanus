@@ -38,12 +38,12 @@ int main(int argc, char **argv) {
     vector<string> tokens = tokenize(content);
     parser(tokens);
 
-    for(int i = 0; i < tokens.size(); i++) {
-        cout << tokens.at(i) << " ";
+    for(vector<string>::size_type i = 0; i < tokens.size(); i++) {
+        //cout << tokens.at(i) << " ";
     }
 
     for (int arg = 0; arg <= argc; arg++) {
-        cout << argv[arg] << ", ";
+        //cout << argv[arg] << ", ";
     }
     
     return 0;
