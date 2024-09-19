@@ -11,4 +11,6 @@ bool charInSyntax(const char character);
 
 bool tokenInSyntax(const std::string token);
 
+std::vector<std::string> tokenize(const std::string code);
+
 #endif

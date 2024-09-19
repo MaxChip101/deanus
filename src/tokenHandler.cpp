@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 
 #include "tokenHandler.h"
 
@@ -52,4 +53,31 @@ bool tokenInSyntax(string token) {
         
     }
     return false;
+}
+
+vector<string> tokenize(const string code) {
+
+    string tokened_string = "";
+    vector<string> tokens;
+    string temp = "";
+
+    for (int i = 0; i < code.length(); i++) {
+        
+        if(charInSyntax(code[i])) {
+            tokened_string += "=" + getToken(code[i]) + "=" ;
+        } else {
+            tokened_string += code[i];
+        }
+    }
+
+    for (int i = 0; i <= tokened_string.length(); i++) {
+        if(tokened_string[i] == '=' && temp != "" || i == tokened_string.length()) {
+            tokens.push_back(temp);
+            temp = "";
+        } else if (tokened_string[i] != '=') {
+            temp += tokened_string[i];
+        }
+    }
+
+    return tokens;
 }
