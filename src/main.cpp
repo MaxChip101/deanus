@@ -9,7 +9,7 @@
 
 using namespace std;
 
-vector<string> tokenize(string code) {
+vector<string> tokenize(const string code) {
 
     string tokened_string = "";
     vector<string> tokens;

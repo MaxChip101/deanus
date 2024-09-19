@@ -11,11 +11,12 @@ void addLibrary(const string library_name, const string library_variable) {
     libraries += "#include \"" + library_name + ".h\"\n";
 }
 
-string parser(vector<string> tokens) {
-
+string parser(const vector<string> tokens) {
 
     bool blockcomment = false;
     bool linecomment = false;
+
+    string buffer = "";
 
     for(int i = 0; i < tokens.size(); i++) {
         if(tokens.at(i) == getToken('/') && tokens.at(i+1) == getToken('/') && !linecomment && !blockcomment) {
@@ -31,12 +32,10 @@ string parser(vector<string> tokens) {
             linecomment = false;
         } else {
             if(!linecomment && ! blockcomment) {
-                if (tokens.at(i) == "import") {
-                    bool foundpackage = true;
-                    while (foundpackage) {
-                        
+                if (tokens.at(i) == "print") {
+                    if(tokens.at(i+1) == getToken('(')) {
+                        //TODO: make the parser remove any space that is not in a string
                     }
-                    
                 }
                 
                 cout << tokens.at(i) << endl;
