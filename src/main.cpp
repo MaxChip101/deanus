@@ -4,8 +4,7 @@
 #include <unistd.h>
 #include <fstream>
 
-#include "key_words.h"
-#include "syntax.h"
+#include "tokenHandler.h"
 #include "compiler.h"
 
 using namespace std;

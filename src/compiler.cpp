@@ -1,4 +1,7 @@
 #include <string>
+#include <iostream>
+#include <vector>
+#include "tokenHandler.h"
 
 using namespace std;
 
@@ -8,14 +11,38 @@ void addLibrary(const string library_name, const string library_variable) {
     libraries += "#include \"" + library_name + ".h\"\n";
 }
 
-void addVariable(const string variable_name, const string value) {
-    
-}
+string parser(vector<string> tokens) {
 
-void addArray(const string array_name, const int dimensions, const string value) {
-    
-}
 
-void addFunction(const string function_name, const string return_type) {
-    
+    bool blockcomment = false;
+    bool linecomment = false;
+
+    for(int i = 0; i < tokens.size(); i++) {
+        if(tokens.at(i) == getToken('/') && tokens.at(i+1) == getToken('/') && !linecomment && !blockcomment) {
+            linecomment = true;
+            i+=1;
+        } else if (tokens.at(i) == getToken('/') && tokens.at(i+1) == getToken('*') && !blockcomment && !linecomment) {
+            blockcomment = true;
+            i+=1;
+        } else if (tokens.at(i) == getToken('*') && tokens.at(i+1) == getToken('/') && blockcomment) {
+            blockcomment = false;
+            i+=1;
+        } else if(tokens.at(i) == getToken('\n') && linecomment) {
+            linecomment = false;
+        } else {
+            if(!linecomment && ! blockcomment) {
+                if (tokens.at(i) == "import") {
+                    bool foundpackage = true;
+                    while (foundpackage) {
+                        
+                    }
+                    
+                }
+                
+                cout << tokens.at(i) << endl;
+            }
+        }
+    }
+
+    return "null";
 }
