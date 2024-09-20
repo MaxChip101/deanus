@@ -7,7 +7,7 @@ using namespace std;
 
 const char key_characters[] = {
     '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '{', '}', '[', ']', '\\', ':', ';', '\"', '\'', '<', ',', 
-    '>', '.', '?', '/', ' ', '\n'
+    '>', '.', '?', '/', ' ', '\n', '\t'
 };
 
 bool charInSyntax(const char character) {
