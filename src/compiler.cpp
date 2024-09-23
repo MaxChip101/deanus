@@ -11,12 +11,43 @@ void addLibrary(const string library_name, const string library_variable) {
     libraries += "#include \"" + library_name + ".h\"\n";
 }
 
-string parser(const vector<string> tokens) {
+vector<string> whitespace_remover(const vector<string> tokens) {
+    bool in_string = false;
+    bool in_character = false;
+    vector<string> final_tokens;
+
+    for(vector<string>::size_type i = 0; i < tokens.size(); i++) {
+        if(tokens.at(i) == "\"") {
+            if(!in_character) {
+                in_string = !in_string;
+            }
+        }
+
+        if(tokens.at(i) == "\'") {
+            if(!in_string) {
+                in_character = !in_character;
+            }
+        }
+
+        if(in_string || in_character) {
+            final_tokens.push_back(tokens.at(i));
+        } else {
+            if(tokens.at(i) != " " && tokens.at(i) != "\t") {
+                final_tokens.push_back(tokens.at(i));
+            }
+        }
+    }
+    return final_tokens;
+}
+
+bool parser(const vector<string> input_tokens) {
 
     bool blockcomment = false;
     bool linecomment = false;
 
     string buffer = "";
+
+    vector<string> tokens = whitespace_remover(input_tokens);
 
     for(vector<string>::size_type i = 0; i < tokens.size(); i++) {
         if(tokens.at(i) == "/" && tokens.at(i+1) == "/" && !linecomment && !blockcomment) {
@@ -32,7 +63,7 @@ string parser(const vector<string> tokens) {
             linecomment = false;
         } else {
             // TODO: if it is a space then it will be deleted
-            if(!linecomment && ! blockcomment) {
+            if(!linecomment && !blockcomment) {
                 /*
                 switch (tokens.at(i)) {
                 case "print":
@@ -48,10 +79,10 @@ string parser(const vector<string> tokens) {
                     }
                 }
                 
-                cout << "(" << tokens.at(i) << ")" << endl;
+                cout << "(" << tokens.at(i) << ")";
             }
         }
     }
 
-    return "null";
+    return true;
 }

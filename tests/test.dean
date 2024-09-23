@@ -1,10 +1,10 @@
 // this program does stuff
-import "console" -> console;
+import "console";
 
 // main function
 fn main() -> int {
     // prints to the screen
-    console.println("test");
+    console.println("test real");
 
     // returns 0
     return 0;
